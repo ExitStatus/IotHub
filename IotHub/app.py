@@ -25,9 +25,19 @@ def record_data():
 
     return jsonify({'result': 'OK'})
 
-@app.route('/api/client/get/<client>', methods=['GET'])
+@app.route('/api/clients', methods=['GET'])
+def get_all_clients():
+    obj = storage.get_all_clients();
+    return jsonify(obj)
+
+@app.route('/api/client/<client>', methods=['GET'])
 def get_client_data(client):
     obj = storage.get_client_data(client);
+    return jsonify(obj)
+
+@app.route('/api/client/history/<client>/<sensor>', methods=['GET'])
+def get_client_history(client, sensor):
+    obj = storage.get_client_history(client, sensor);
     return jsonify(obj)
 
 storage.create_database()

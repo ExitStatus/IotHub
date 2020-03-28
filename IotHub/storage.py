@@ -81,17 +81,70 @@ def get_client_data(client_name):
         if values is None or len(values) == 0:
             return None
 
+        cursor.close()
+
         return {
             'client_name': client_name,
             'power_type': values[0],
             'power_level': values[1]
         }
 
-        cursor.close()
     except sqlite3.Error as error:
         print(error)
     finally:
        if (conn):
             conn.close()
 
+def get_all_clients():
+    try:
+        conn = sqlite3.connect(db_filename)
+        cursor = conn.cursor()
+
+        clients = []
+        retval = cursor.execute("SELECT client_name, power_type, power_level, last_reading_date FROM client ORDER BY client_name")
+        rows = retval.fetchall()
+
+        for row in rows:
+            clients.append({
+                'client_name': row[0],
+                'power_type': row[1],
+                'power_level': row[2],
+                'last_reading': row[3]
+            })
+
+        cursor.close()
+
+        return clients;
+    except sqlite3.Error as error:
+        print(error)
+    finally:
+       if (conn):
+            conn.close()
+
+def get_client_history(client_name, sensor_name):
+    try:
+        conn = sqlite3.connect(db_filename)
+        cursor = conn.cursor()
+
+        values = []
+
+        retval = cursor.execute("SELECT reading_date, sensor_value FROM historical_data WHERE client_name=? AND sensor_name=?", [client_name, sensor_name])
+        rows = retval.fetchall()
+        
+        for row in rows:
+            values.append({ 'reading_date': row[0], 'sensor_value': row[1] })
+
+        cursor.close()
+
+        return {
+            'client_name': client_name,
+            'sensor_name': sensor_name,
+            'values': values
+        }
+
+    except sqlite3.Error as error:
+        print(error)
+    finally:
+       if (conn):
+            conn.close()
 
