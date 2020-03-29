@@ -43,24 +43,32 @@
                     <div class="card">
                         <div class="card-header">Office</div>
                         <div class="card-body">
-                            <table>
-                            <tr>
-                                <td><img src="/static/thermometer.png" width="64" height="64" /></td><td class="temperature">18.55&deg;C</td>
-                                <td><img src="/static/humidity.png" width="58" height="58" class="ml-2"/></td><td class="humidity">55.23%</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <hr class="ml-2"/>
-                                    <span class="text-right font-weight-bold">Max: </span><span>18.55&deg;C</span><br/>
-                                    <span class="text-right font-weight-bold">Min: </span><span>18.55&deg;C</span>
-                                </td>
-                                <td colspan="2" >
-                                    <hr class="ml-2"/>
-                                    <span class="text-right font-weight-bold">Max: </span><span>60.00%</span><br />
-                                    <span class="text-right font-weight-bold">Min: </span><span>60.00%</span>
-                                </td>
-                            </tr>
-                            </table>
+                            <table class="flex-fill">
+                                <tr>
+                                    <td><img src="/static/thermometer.png" width="48" height="48" /></td>
+                                    <td class="temperature">18.55&deg;C</td>
+                                    <td>
+                                        <table>
+                                            <tr><td class="text-right font-weight-bold pl-2 maxmin">Max: </td><td class="maxmin">18.55&deg;C</td></tr>
+                                            <tr><td class="text-right font-weight-bold pl-2 maxmin">Min: </td><td class="maxmin">18.55&deg;C</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><img src="/static/humidity.png" width="48" height="48" /></td>
+                                    <td class="humidity">55.23%</td>
+                                    <td>
+                                        <table>
+                                            <tr><td class="text-right font-weight-bold pl-2 maxmin">Max: </td><td class="maxmin">55.23%</td></tr>
+                                            <tr><td class="text-right font-weight-bold pl-2 maxmin">Min: </td><td class="maxmin">55.23%</td></tr>
+                                        </table>
+                                    </td>
+                                    <td colspan="2"><hr /></td>
+                                </tr>
+                             </table>
+                            <hr/>
+                            <table style="width: 100%"><tr><td class="maxmin"><span class="font-weight-bold">Power: </span>AC</td><td class="maxmin text-right"><span class="font-weight-bold">Battery:</span> 100%</td></tr></table>
                         </div>
                     </div>
                     <div class="card">

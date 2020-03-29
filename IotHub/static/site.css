@@ -10,3 +10,11 @@ body {
 .humidity {
     font-size: 24px;
 }
+
+.maxmin {
+    font-size: 10px;
+}
+
+.width100 {
+    width: 100%;
+}
