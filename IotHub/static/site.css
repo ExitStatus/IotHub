@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+    padding-top: 20px;
+}
+
+.temperature {
+    font-size: 24px;
+}
+
+.humidity {
+    font-size: 24px;
+}

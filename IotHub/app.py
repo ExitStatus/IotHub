@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, abort
+from flask import Flask, request, jsonify, abort, render_template
 
 import os
 import storage
@@ -8,8 +8,16 @@ app = Flask(__name__)
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app.wsgi_app
 
+# -------------------------------------------------------------------------
+# Web Endpoints
+# -------------------------------------------------------------------------
+@app.route('/')
+def home():
+    return render_template("home.html")
 
-
+# -------------------------------------------------------------------------
+# API Endpoints
+# -------------------------------------------------------------------------
 @app.route('/api/record', methods=['POST'])
 def record_data():
     print("API /api/record called")

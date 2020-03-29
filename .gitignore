@@ -3,3 +3,4 @@
 /IotHub/__pycache__/
 /IotHub/obj/
 /IotHub/iot.db
+/IotHub/app.log
