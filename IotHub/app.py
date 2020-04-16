@@ -2,11 +2,14 @@ from flask import Flask, request, jsonify, abort, render_template
 
 import os
 import storage
+import logging
+import logFactory
 
 app = Flask(__name__)
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 wsgi_app = app.wsgi_app
+logger = logFactory.CreateLogger("app")
 
 # -------------------------------------------------------------------------
 # Web Endpoints
@@ -20,8 +23,8 @@ def home():
 # -------------------------------------------------------------------------
 @app.route('/api/record', methods=['POST'])
 def record_data():
-    print("API /api/record called")
-    print(request.json)
+    logger.info("API /api/record called")
+    logger.info(request.json)
     if not request.json or "client_name" not in request.json or "power_type" not in request.json or "power_level" not in request.json:
         abort(400)
     
@@ -49,6 +52,7 @@ def get_client_history(client, sensor):
     return jsonify(obj)
 
 storage.create_database()
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 5555)
